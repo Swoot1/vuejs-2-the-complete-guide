@@ -55,7 +55,8 @@ new Vue({
         },
         healPlayer(){
             const healingPower = 10;
-            this.playerHealth += healingPower;
+            const maximumHealth = 100;
+            this.playerHealth = healingPower + this.playerHealth > maximumHealth ? maximumHealth : healingPower + this.playerHealth;
             this.actions.unshift({
                 performedBy: 'PLAYER',
                 subject: 'HER-/HIMSELF',
