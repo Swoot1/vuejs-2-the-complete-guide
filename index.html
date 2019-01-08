@@ -41,15 +41,15 @@
         <div class="small-12 columns">
             <button id="attack"
                     @click="playerAttack"
-                    :disabled="!isPlayersTurn">ATTACK</button>
+                    v-show="isPlayersTurn">ATTACK</button>
             <button id="special-attack"
                     @click="playerSpecialAttack"
-                    :disabled="!isPlayersTurn">SPECIAL ATTACK</button>
+                    v-show="isPlayersTurn">SPECIAL ATTACK</button>
             <button id="heal"
                     @click="healPlayer"
-                    :disabled="!isPlayersTurn">HEAL</button>
+                    v-show="isPlayersTurn">HEAL</button>
             <button id="give-up"
-                    :disabled="!isPlayersTurn"
+                    v-show="isPlayersTurn"
                     @click="giveUp">GIVE UP</button>
         </div>
     </section>
