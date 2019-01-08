@@ -44,16 +44,12 @@
     <section class="row controls" v-else>
         <div class="small-12 columns">
             <button id="attack"
-                    @click="playerAttack"
-                    v-show="isPlayersTurn">ATTACK</button>
+                    @click="playerAttack">ATTACK</button>
             <button id="special-attack"
-                    @click="playerSpecialAttack"
-                    v-show="isPlayersTurn">SPECIAL ATTACK</button>
+                    @click="playerSpecialAttack">SPECIAL ATTACK</button>
             <button id="heal"
-                    @click="healPlayer"
-                    v-show="isPlayersTurn">HEAL</button>
+                    @click="healPlayer">HEAL</button>
             <button id="give-up"
-                    v-show="isPlayersTurn"
                     @click="giveUp">GIVE UP</button>
         </div>
     </section>

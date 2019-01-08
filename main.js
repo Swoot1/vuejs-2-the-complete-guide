@@ -5,7 +5,6 @@ new Vue({
         monsterHealth: null,
         actions: [],
         message: null,
-        isMonstersTurn: null,
         gameIsPlaying: false,
     },
     methods: {
@@ -14,7 +13,6 @@ new Vue({
             this.monsterHealth = 100;
             this.message = null;
             this.actions.length = [];
-            this.isMonstersTurn = false;
             this.gameIsPlaying = true;
         },
         monsterAttack(){
@@ -36,6 +34,10 @@ new Vue({
                 type: 'ATTACKS',
                 damage
             });
+
+            if(this.gameIsPlaying) {
+                this.monsterAttack();
+            }
         },
         playerSpecialAttack(){
             const damage = this.getSevereDamage();
@@ -46,6 +48,10 @@ new Vue({
                 type: 'ATTACKS',
                 damage
             });
+
+            if(this.gameIsPlaying) {
+                this.monsterAttack();
+            } 
         },
         healPlayer(){
             const healingPower = 10;
@@ -56,6 +62,8 @@ new Vue({
                 type: 'HEALS',
                 damage: healingPower
             });
+
+            this.monsterAttack();
         },
         giveUp(){
             this.message = 'Game is over coward!'
@@ -81,36 +89,21 @@ new Vue({
             if(this.playerHealth <= 0 || this.monsterHealth <= 0){
                 return true;
             }
-        },
-        isPlayersTurn(){
-            return !this.isMonstersTurn && this.gameIsPlaying;
         }
     },
     watch: {
         monsterHealth: function(){
-            this.isMonstersTurn = !this.isMonstersTurn;
-
             if(this.monsterHealth <= 0) {
                 this.gameIsPlaying = false;
                 this.message = 'Player wins!'
                 return;
             }
-
-            if(this.isMonstersTurn){
-                this.monsterAttack();
-            }
         },
         playerHealth: function() {
-            this.isMonstersTurn = !this.isMonstersTurn;
-
             if(this.playerHealth <= 0) {
                 this.gameIsPlaying = false;
                 this.message = 'Monster wins!'
                 return;
-            }
-
-            if(this.isMonstersTurn){
-                this.monsterAttack();
             }
         }
     }
