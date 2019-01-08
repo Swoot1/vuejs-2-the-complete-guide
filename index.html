@@ -53,7 +53,7 @@
                     @click="giveUp">GIVE UP</button>
         </div>
     </section>
-    <section class="row log">
+    <section class="row log" v-if="actions.length">
         <div class="small-12 columns">
             <ul>
                 <li v-for="action in actions"
