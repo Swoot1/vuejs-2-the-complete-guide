@@ -38,7 +38,8 @@
     <section class="row controls">
         <div class="small-12 columns">
             <button id="start-game"
-                    @click="startNewGame">START NEW GAME</button>
+                    @click="startNewGame"
+                    v-show="!gameIsPlaying">START NEW GAME</button>
         </div>
     </section>
     <section class="row controls">
